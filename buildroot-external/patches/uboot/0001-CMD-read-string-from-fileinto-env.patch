@@ -1,5 +1,4 @@
-From c8df96af414e6c9b1e6ff8ac5a56b6d3cb365636 Mon Sep 17 00:00:00 2001
-Message-Id: <c8df96af414e6c9b1e6ff8ac5a56b6d3cb365636.1645627108.git.stefan@agner.ch>
+From 01d614198feedef81ce60e61bbdf5f1ddc62be52 Mon Sep 17 00:00:00 2001
 From: Pascal Vizeli <pvizeli@syshack.ch>
 Date: Sun, 5 Aug 2018 20:43:03 +0000
 Subject: [PATCH] CMD: read string from fileinto env
@@ -8,17 +7,17 @@ Signed-off-by: Pascal Vizeli <pvizeli@syshack.ch>
 ---
  cmd/Kconfig   |  5 +++++
  cmd/Makefile  |  1 +
- cmd/fileenv.c | 46 ++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 52 insertions(+)
+ cmd/fileenv.c | 45 +++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 51 insertions(+)
  create mode 100644 cmd/fileenv.c
 
 diff --git a/cmd/Kconfig b/cmd/Kconfig
-index 02c298fdbe..959fff5b76 100644
+index df6d71c103..6cda4909d5 100644
 --- a/cmd/Kconfig
 +++ b/cmd/Kconfig
-@@ -1448,6 +1448,11 @@ config CMD_SETEXPR_FMT
- 	  Evaluate format string expression and store result in an environment
- 	    variable.
+@@ -1689,6 +1689,11 @@ config CMD_XXD
+ 	help
+ 	  Print file as hexdump to standard output
  
 +config CMD_FILEENV
 +	bool "fileenv"
@@ -29,11 +28,11 @@ index 02c298fdbe..959fff5b76 100644
  
  menu "Android support commands"
 diff --git a/cmd/Makefile b/cmd/Makefile
-index e31ac15ef7..eed8c7ebfe 100644
+index 9a6790cc17..a521653ff8 100644
 --- a/cmd/Makefile
 +++ b/cmd/Makefile
-@@ -143,6 +143,7 @@ obj-$(CONFIG_CMD_SCSI) += scsi.o disk.o
- obj-$(CONFIG_CMD_SHA1SUM) += sha1sum.o
+@@ -164,6 +164,7 @@ obj-$(CONFIG_CMD_SHA1SUM) += sha1sum.o
+ obj-$(CONFIG_CMD_SEAMA) += seama.o
  obj-$(CONFIG_CMD_SETEXPR) += setexpr.o
  obj-$(CONFIG_CMD_SETEXPR_FMT) += printf.o
 +obj-$(CONFIG_CMD_FILEENV) += fileenv.o
@@ -42,12 +41,11 @@ index e31ac15ef7..eed8c7ebfe 100644
  obj-$(CONFIG_CMD_SMC) += smccc.o
 diff --git a/cmd/fileenv.c b/cmd/fileenv.c
 new file mode 100644
-index 0000000000..9891cb05ab
+index 0000000000..4154c8df0f
 --- /dev/null
 +++ b/cmd/fileenv.c
-@@ -0,0 +1,46 @@
+@@ -0,0 +1,45 @@
 +#include <config.h>
-+#include <common.h>
 +#include <command.h>
 +#include <fs.h>
 +#include <linux/ctype.h>
@@ -92,6 +90,3 @@ index 0000000000..9891cb05ab
 +	"<interface> <dev:part> <addr> <filename> <envname>\n"
 +	"    - Read file from fat32 and store it as env."
 +);
--- 
-2.35.1
-

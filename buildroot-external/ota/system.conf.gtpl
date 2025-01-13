@@ -2,15 +2,20 @@
 compatible={{ env "ota_compatible" }}
 mountprefix=/run/rauc
 statusfile=/mnt/data/rauc.db
-bootloader={{ env "BOOTLOADER" }}
-{{- if eq (env "BOOTLOADER") "grub" }}
-{{- if eq (env "BOOT_SYS") "efi" }}
-grubenv=/mnt/boot/EFI/BOOT/grubenv
+{{- if eq (env "BOOTLOADER") "tryboot" }}
+bootloader=custom
 {{- else }}
-grubenv=/mnt/boot/grubenv
+bootloader={{ env "BOOTLOADER" }}
 {{- end }}
+{{- if eq (env "BOOTLOADER") "grub" }}
+grubenv=/mnt/boot/EFI/BOOT/grubenv
 {{- end }}
 
+{{- if eq (env "BOOTLOADER") "tryboot" }}
+[handlers]
+bootloader-custom-backend=/usr/lib/rauc/rpi-tryboot.sh
+
+{{- end }}
 [keyring]
 path=/etc/rauc/keyring.pem
 

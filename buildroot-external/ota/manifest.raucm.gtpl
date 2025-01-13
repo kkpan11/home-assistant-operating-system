@@ -2,6 +2,9 @@
 compatible={{ env "ota_compatible" }}
 version={{ env "ota_version" }}
 
+[bundle]
+format=verity
+
 [hooks]
 filename=hook
 hooks=install-check;
@@ -12,7 +15,7 @@ hooks=install;
 
 [image.kernel]
 filename=kernel.img
-{{- if eq (env "BOOTLOADER") "grub" }}
+{{- if eq (env "BOOTLOADER") "tryboot" }}
 hooks=post-install;
 {{- end }}
 

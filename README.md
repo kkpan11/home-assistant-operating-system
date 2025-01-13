@@ -4,6 +4,8 @@ Home Assistant Operating System (formerly HassOS) is a Linux based operating sys
 
 Home Assistant Operating System uses Docker as its container engine. By default it deploys the Home Assistant Supervisor as a container. Home Assistant Supervisor in turn uses the Docker container engine to control Home Assistant Core and Add-Ons in separate containers. Home Assistant Operating System is **not** based on a regular Linux distribution like Ubuntu. It is built using [Buildroot](https://buildroot.org/) and it is optimized to run Home Assistant. It targets single board compute (SBC) devices like the Raspberry Pi or ODROID but also supports x86-64 systems with UEFI.
 
+[![Home Assistant - A project from the Open Home Foundation](https://www.openhomefoundation.org/badges/home-assistant.png)](https://www.openhomefoundation.org/)
+
 ## Features
 
 - Lightweight and memory-efficient
@@ -14,6 +16,7 @@ Home Assistant Operating System uses Docker as its container engine. By default 
 
 ## Supported hardware
 
+- Nabu Casa
 - Raspberry Pi
 - Hardkernel ODROID
 - Asus Tinker Board
@@ -37,7 +40,7 @@ The Home Assistant Operating System documentation can be found on the [Home Assi
 ### Components
 
 - **Bootloader:**
-  - [Barebox](https://barebox.org/) for devices that support UEFI
+  - [GRUB](https://www.gnu.org/software/grub/) for devices that support UEFI
   - [U-Boot](https://www.denx.de/wiki/U-Boot) for devices that don't support UEFI
 - **Operating System:**
   - [Buildroot](https://buildroot.org/) LTS Linux
@@ -55,4 +58,4 @@ The Home Assistant Operating System documentation can be found on the [Home Assi
 
 The Development build GitHub Action Workflow is a manually triggered workflow
 which creates Home Assistant OS development builds. The development builds are
-available at [os-builds.home-assistant.io](https://os-builds.home-assistant.io/).
+available at [https://os-artifacts.home-assistant.io/index.html](https://os-artifacts.home-assistant.io/index.html).
